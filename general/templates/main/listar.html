@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+
+
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1" class="btn btn-primary">&laquo; Primero</a>
+                  <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Anterior</a>
+              {% endif %}
+      
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+      
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Siguiente</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary">Último &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+      <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Matrícula</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">U. Adscripción</th>
+                  <th scope="col">Turno</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col">Teléfono</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                {% for ctx in page_obj %}
+                  <tr>
+                    <td scope="row">{{ ctx.id }}</td>
+                    <td>{{ ctx.matricula }}</td>
+                    <td>{{ ctx.nombre }}</td>
+                    <td>{{ ctx.categoria }}</td>
+                    <td>{{ ctx.uadscripcion }}</td>
+                    <td>{{ ctx.turno }}</td>
+                    <td>{{ ctx.correo }}</td>
+                    <td>{{ ctx.telefono }}</td>
+                    {% if ctx.image %}
+                      <img src="{{ ctx.image.url }}" alt="">
+                    {% endif %}
+                    <td><a href="{% url 'edit' ctx.id %}" class="btn btn-secondary">Editar</a></td>
+                    <td><button class="btn btn-danger">Imprimir</button> </td>    
+                  </tr>
+                {% endfor %}
+              </tbody>
+              
+            </table>
+              
+          </div>
+      </div>
+  </div>
+
+  
+{% endblock content %}
