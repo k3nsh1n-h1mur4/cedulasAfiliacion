@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 
+
 from .models import TrabajadorModel
 from .forms import UserRegisterForm, TrUpdateForm, RegistroTrabajadorForm, UserLoginForm
 
@@ -66,10 +67,16 @@ def listar_view(request):
 
 def edit_view(request, id):
     id = TrabajadorModel.objects.get(id=id)
-    form = RegistroTrabajadorForm(request.POST, instance=id)
-    if form.is_valid():
-        form.save()
+    form = Tr
+    if request.method == 'POST':
+        form = TrUpdateForm(request.POST or None, instance=id)
+        if form.is_valid():
+            form.save(commit=True)
+            return HttpResponse('Gracias')
+    else:
+        form = TrUpdateForm(instance=id)
     return render(request, 'main/update.html', {'id': id, 'form': form})
+    
 
 def logout_view(request):
     if request.user.is_authenticated:

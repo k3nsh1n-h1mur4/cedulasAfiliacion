@@ -24,41 +24,19 @@ class LoginModel(models.Model):
 
 class TrabajadorModel(models.Model):
     id = models.IntegerField(primary_key=True)
-    """nombre = models.CharField(max_length=20)
-    domicilio = models.CharField(max_length=20)
-    colonia = models.CharField(max_length=20)
-    municipio = models.CharField(max_length=20)
-    cp = models.CharField(max_length=20)
-    localidad = models.CharField(max_length=20)
-    celular = models.CharField(max_length=20)
-    correo = models.CharField(max_length=20)
-    lugar_nac = models.CharField(max_length=20)
-    f_dia = models.CharField(max_length=20)
-    f_mes = models.CharField(max_length=20)
-    f_anio = models.CharField(max_length=20)
-    nss = models.CharField(max_length=20)
-    rfc = models.CharField(max_length=20)
-    e_c = models.CharField(max_length=20)
-    curp = models.CharField(max_length=20)
-    categoria = models.CharField(max_length=20)
-    matricula = models.CharField(max_length=20)
-    sueldo = models.CharField(max_length=20)
-    uadscripcion = models.CharField(max_length=20)
-    f_ingreso = models.CharField(max_length=20)
-    a_a = models.CharField()
-    a_q = models.CharField()
-    a_d = models.CharField()
-    q_proc = models.CharField()"""
-
-    matricula = models.CharField(max_length=20)
-    nombre = models.CharField(max_length=250)
-    categoria = models.CharField(max_length=250)
-    uadscripcion = models.CharField(max_length=250)
-    turno = models.CharField(max_length=150)
-    #telefono = models.CharField(max_length=70)
-    correo = models.CharField(max_length=150)
-    telefono = models.CharField(max_length=100)
+    matricula = models.CharField(max_length=20, null=True, blank=True)
+    nombre = models.CharField(max_length=250, null=True, blank=True)
+    categoria = models.CharField(max_length=250, null=True, blank=True)
+    uadscripcion = models.CharField(max_length=250, null=True, blank=True)
+    turno = models.CharField(max_length=150, null=True, blank=True)
+    correo = models.CharField(max_length=150, null=True, blank=True)
+    telefono = models.CharField(max_length=100, null=True, blank=True)
+    verificado = models.CharField(max_length=100, null=True, blank=True)
     #created_at = models.DateTimeField(auto_now_add=True)
+
+
+   
+    
 
 
     def __str__(self):

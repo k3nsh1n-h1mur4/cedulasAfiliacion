@@ -46,6 +46,7 @@
                   <th scope="col">Turno</th>
                   <th scope="col">Correo</th>
                   <th scope="col">Teléfono</th>
+                  <th scope="col">Status</th>
                   
                 </tr>
               </thead>
@@ -60,6 +61,7 @@
                     <td>{{ ctx.turno }}</td>
                     <td>{{ ctx.correo }}</td>
                     <td>{{ ctx.telefono }}</td>
+                    <td>{{ ctx.verificado }}</td>
                     {% if ctx.image %}
                       <img src="{{ ctx.image.url }}" alt="">
                     {% endif %}
