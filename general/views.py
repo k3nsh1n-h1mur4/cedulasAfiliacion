@@ -6,6 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes.letters
+
 
 from .models import TrabajadorModel
 from .forms import UserRegisterForm, TrUpdateForm, RegistroTrabajadorForm, UserLoginForm
@@ -67,14 +72,16 @@ def listar_view(request):
 
 def edit_view(request, id):
     id = TrabajadorModel.objects.get(id=id)
-    form = Tr
+    form = TrUpdateForm(instance=id)
+    
     if request.method == 'POST':
         form = TrUpdateForm(request.POST or None, instance=id)
         if form.is_valid():
             form.save(commit=True)
-            return HttpResponse('Gracias')
+            messages.success(request, "Registro Actualizado")
+            
     else:
-        form = TrUpdateForm(instance=id)
+        form = TrUpdateForm(request.POST, instance=id)
     return render(request, 'main/update.html', {'id': id, 'form': form})
     
 
@@ -83,4 +90,16 @@ def logout_view(request):
         logout(request)
     else:
         return HttpResponse('usuario no autenticado')
+
+
+
+
+def create_pdf(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(100, 100, "Hola mundo")
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="hola.pdf")
 

@@ -14,6 +14,7 @@ urlpatterns = [
     path('main/register', views.register_view, name='register'),
     path('main/listar/', views.listar_view, name='listar'),
     path('main/edit/<int:id>', views.edit_view, name='edit'),
+    path('pdf/', views.create_pdf, name='pdf'),
 ]
 
 if settings.DEBUG:

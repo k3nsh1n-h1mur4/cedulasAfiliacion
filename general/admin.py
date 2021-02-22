@@ -6,8 +6,8 @@ from general.models import TrabajadorModel
 
 
 class TrabajadorModelAdmin(admin.ModelAdmin):
-    list_display = ('matricula', 'nombre',)
-    search_fields = ('matricula', 'nombre', )
+    list_display = ('id', 'matricula', 'nombre',)
+    search_fields = ('id', 'matricula', 'nombre', )
     list_per_page = 500
 
 admin.site.register(TrabajadorModel, TrabajadorModelAdmin)

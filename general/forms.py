@@ -22,7 +22,7 @@ class RegistroTrabajadorForm(forms.ModelForm):
 class TrUpdateForm(forms.ModelForm):
     class Meta:
         model = TrabajadorModel
-        fields = "__all__"
+        exclude = ('id', )
 
 
   
