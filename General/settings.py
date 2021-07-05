@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'General.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbGeneralIMSS',
-        'USER': 'k3nsh1n',
-        'PASSWORD': 'k0rn82...',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': 3306,
     }
 }
